@@ -1,14 +1,24 @@
 require 'taskmapper-bcx'
 require 'rspec'
-require 'vcr'
-require 'webmock'
+require 'fakeweb'
 
-VCR.configure do |c|
-  c.cassette_library_dir = 'spec/cassettes'
-  c.hook_into :webmock
-  c.configure_rspec_metadata!
+def fixture_file(filename)
+  return '' if filename == ''
+  file_path = File.expand_path("#{File.dirname(__FILE__)}/fixtures/#{filename}")
+  File.read(file_path)
 end
 
-RSpec.configure do |c|
-  c.treat_symbols_as_metadata_keys_with_true_values = true
+def stub_request(method, url, filename, status=nil)
+  options = {:body => ""}
+  options.merge!({:body => fixture_file(filename)}) if filename
+  options.merge!({:body => status.last}) if status
+  options.merge!({:status => status}) if status
+  options.merge!({:content_type => 'application/json'})
+
+  FakeWeb.register_uri method, url, options
 end
+
+def stub_get(*args); stub_request(:get, *args) end
+def stub_post(*args); stub_request(:post, *args) end
+def stub_put(*args); stub_request(:put, *args) end
+def stub_delete(*args); stub_request(:delete, *args) end
