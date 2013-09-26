@@ -18,3 +18,5 @@ module TaskMapper::Provider
     end
   end
 end
+
+require 'provider/api/auth'

@@ -30,5 +30,9 @@ module TaskMapper::Provider
     def configure(auth)
       provider.api = API.new(auth[:username], auth[:password])
     end
+
+    def valid?
+      provider.api.authenticated?
+    end
   end
 end

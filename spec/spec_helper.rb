@@ -2,6 +2,8 @@ require 'taskmapper-bcx'
 require 'rspec'
 require 'fakeweb'
 
+FakeWeb.allow_net_connect = false
+
 def username
   "username"
 end
@@ -10,8 +12,8 @@ def password
   "password"
 end
 
-def create_instance
-  TaskMapper.new(:bcx, :username => username, :password => password)
+def create_instance(u = username, p = password)
+  TaskMapper.new(:bcx, :username => u, :password => p)
 end
 
 def fixture_file(filename)
@@ -20,12 +22,12 @@ def fixture_file(filename)
   File.read(file_path)
 end
 
-def stub_request(method, url, filename, status=nil)
+def stub_request(method, url, filename, status=nil, content_type="application/json")
   options = {:body => ""}
   options.merge!({:body => fixture_file(filename)}) if filename
-  options.merge!({:body => status.last}) if status
+  options.merge!({:body => status.last}) if status.is_a?(Array)
   options.merge!({:status => status}) if status
-  options.merge!({:content_type => 'application/json'})
+  options.merge!({:content_type => content_type})
 
   FakeWeb.register_uri method, url, options
 end
@@ -34,3 +36,13 @@ def stub_get(*args); stub_request(:get, *args) end
 def stub_post(*args); stub_request(:post, *args) end
 def stub_put(*args); stub_request(:put, *args) end
 def stub_delete(*args); stub_request(:delete, *args) end
+
+def base_uri
+  "https://#{username}:#{password}@basecamp.com/999999999/api/v1"
+end
+
+RSpec.configure do |c|
+  c.before do
+    stub_get(base_uri + "/people/me.json", 'me.json')
+  end
+end
