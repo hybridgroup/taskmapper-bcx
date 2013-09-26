@@ -2,6 +2,18 @@ require 'taskmapper-bcx'
 require 'rspec'
 require 'fakeweb'
 
+def username
+  "username"
+end
+
+def password
+  "password"
+end
+
+def create_instance
+  TaskMapper.new(:bcx, :username => username, :password => password)
+end
+
 def fixture_file(filename)
   return '' if filename == ''
   file_path = File.expand_path("#{File.dirname(__FILE__)}/fixtures/#{filename}")
