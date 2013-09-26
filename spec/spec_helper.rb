@@ -43,6 +43,8 @@ end
 
 RSpec.configure do |c|
   c.before do
-    stub_get(base_uri + "/people/me.json", 'me.json')
+    stub_get(base_uri + '/people/me.json', 'me.json')
+    stub_get(base_uri + '/projects.json', 'projects.json')
+    stub_get(base_uri + '/projects/605816632.json', 'project.json')
   end
 end
