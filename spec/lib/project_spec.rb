@@ -34,4 +34,24 @@ describe TaskMapper::Provider::Bcx::Project do
       end
     end
   end
+
+  describe "#project" do
+    context "with a project ID" do
+      let(:project)  { tm.project 605816632 }
+
+      it "returns the requested project" do
+        expect(project).to be_a project_class
+        expect(project.id).to eq 605816632
+      end
+    end
+
+    context "with a hash containing a project ID" do
+      let(:project)  { tm.project :id => 605816632 }
+
+      it "returns the requested project" do
+        expect(project).to be_a project_class
+        expect(project.id).to eq 605816632
+      end
+    end
+  end
 end
