@@ -14,10 +14,6 @@ module TaskMapper::Provider
         self[:content] = string
       end
 
-      def comments
-        self["comments"].collect { |c| Comment.new c  }
-      end
-
       class << self
         def find_by_attributes(project_id, attributes = {})
           search_by_attribute(self.find_all(project_id), attributes)
@@ -26,17 +22,20 @@ module TaskMapper::Provider
         def find_all(project_id)
           todos = api.todos project_id
           todos = todos.select { |todo| todo.is_a?(Hash) }
+          todos.each { |t| t.merge!({:project_id => project_id})}
           todos.collect { |todo| self.new todo }
         end
 
         def find_by_id(project_id, ticket_id)
           todo = api.todo project_id, ticket_id
-          self.new Hash[todo]
+          todo = Hash[todo].merge({:project_id => project_id})
+          self.new todo
         end
 
         def create(attributes)
           todo = api.create_todo attributes
-          self.new Hash[todo]
+          todo = Hash[todo].merge({:project_id => attributes[:project_id]})
+          self.new todo
         end
 
         private

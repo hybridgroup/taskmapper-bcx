@@ -15,5 +15,15 @@ describe TaskMapper::Provider::Bcx::Ticket do
         expect(comments.first).to be_a comment_class
       end
     end
+
+    context "with an array of comment IDs" do
+      let(:comments) { ticket.comments [1028592764] }
+
+      it "returns an array of the matching comments" do
+        expect(comments).to be_an Array
+        expect(comments.first).to be_a comment_class
+        expect(comments.first.id).to eq 1028592764
+      end
+    end
   end
 end
