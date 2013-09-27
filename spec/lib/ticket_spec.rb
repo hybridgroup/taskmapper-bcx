@@ -46,4 +46,21 @@ describe TaskMapper::Provider::Bcx::Project do
       end
     end
   end
+
+  describe "#ticket!" do
+    context "with new ticket params" do
+      let(:ticket) do
+        project.ticket!(
+          :description => "A New Ticket",
+          :todolist_id => 968316918
+        )
+      end
+
+      it "should create a new ticket" do
+        expect(ticket).to be_a ticket_class
+        expect(ticket.description).to eq "A New Ticket"
+        expect(ticket.todolist_id).to eq 968316918
+      end
+    end
+  end
 end

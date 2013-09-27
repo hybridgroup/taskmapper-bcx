@@ -49,5 +49,6 @@ RSpec.configure do |c|
     stub_get(base_uri + '/projects/605816632/todolists.json', 'todolists.json')
     stub_get(base_uri + '/projects/605816632/todolists/968316918.json', 'todolist.json')
     stub_get(base_uri + '/projects/605816632/todos/1.json', 'todo.json')
+    stub_post(base_uri + '/projects/605816632/todolists/968316918/todos.json', 'new_todo.json')
   end
 end
