@@ -26,7 +26,7 @@ module TaskMapper::Provider
         body.merge({ "due_at" => due_at.utc.iso8601 }) if due_at
 
         url = "/projects/#{project}/todolists/#{todolist}/todos.json"
-        self.class.post url, :body => body
+        self.class.post url, :body => body.to_json
       end
     end
   end
