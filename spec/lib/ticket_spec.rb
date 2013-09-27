@@ -35,4 +35,15 @@ describe TaskMapper::Provider::Bcx::Project do
       end
     end
   end
+
+  describe "#ticket" do
+    context "with a ticket ID" do
+      let(:ticket) { project.ticket 1 }
+
+      it "returns the requested ticket" do
+        expect(ticket).to be_a ticket_class
+        expect(ticket.id).to eq 1
+      end
+    end
+  end
 end
