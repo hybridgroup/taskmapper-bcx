@@ -14,6 +14,10 @@ module TaskMapper::Provider
         self[:content] = string
       end
 
+      def comments
+        self["comments"].collect { |c| Comment.new c  }
+      end
+
       class << self
         def find_by_attributes(project_id, attributes = {})
           search_by_attribute(self.find_all(project_id), attributes)
