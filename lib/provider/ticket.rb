@@ -14,6 +14,22 @@ module TaskMapper::Provider
         self[:content] = string
       end
 
+      def updated_at
+        begin
+          Time.parse(self[:updated_at])
+        rescue
+          self[:updated_at]
+        end
+      end
+
+      def created_at
+        begin
+          Time.parse(self[:created_at])
+        rescue
+          self[:created_at]
+        end
+      end
+
       class << self
         def find_by_attributes(project_id, attributes = {})
           search_by_attribute(self.find_all(project_id), attributes)
