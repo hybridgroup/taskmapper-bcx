@@ -21,3 +21,4 @@ end
 
 require 'provider/api/auth'
 require 'provider/api/projects'
+require 'provider/api/todos'

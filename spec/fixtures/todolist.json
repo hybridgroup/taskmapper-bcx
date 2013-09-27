@@ -1,0 +1,87 @@
+{
+  "id": 968316918,
+  "name": "Launch list",
+  "description": "What we need for launch!",
+  "created_at": "2012-03-24T09:53:35-05:00",
+  "updated_at": "2012-03-24T09:59:35-05:00",
+  "completed": false,
+  "position": 1,
+  "completed_count": 3,
+  "remaining_count": 5,
+  "creator": {
+    "id": 127326141,
+    "name": "David Heinemeier Hansson",
+    "avatar_url": "https://asset0.37img.com/global/9d2148cb8ed8e2e8ecbc625dd1cbe7691896c7d9/avatar.96.gif?r=3"
+  },
+  "todos": {
+    "remaining": [
+      {
+        "id": 1,
+        "content": "Design it",
+        "due_at": "2012-03-24",
+        "comments_count": 0,
+        "created_at": "2012-03-24T09:53:35-05:00",
+        "updated_at": "2012-03-24T09:55:52-05:00",
+        "assignee": {
+          "id": 149087659,
+          "type": "Person",
+          "name": "Jason Fried"
+        },
+        "position": 1,
+        "url": "https://basecamp.com/999999999/api/v1/projects/605816632-bcx/todos/223304243-design-it.json"
+      },
+      {
+        "id": 2,
+        "content": "Test it",
+        "due_at": null,
+        "comments_count": 0,
+        "created_at": "2012-03-24T09:53:35-05:00",
+        "updated_at": "2012-03-24T09:53:35-05:00",
+        "assignee": {},
+        "position": 2,
+        "url": "https://basecamp.com/999999999/api/v1/projects/605816632-bcx/todos/411008527-test-it.json"
+      }
+    ],
+    "completed": [
+      {
+        "id": 1046098401,
+        "content": "Think of it",
+        "due_at": null,
+        "comments_count": 0,
+        "created_at": "2012-03-24T09:59:33-05:00",
+        "updated_at": "2012-03-24T09:59:35-05:00",
+        "completed_at": "2012-03-24T09:59:35-05:00",
+        "url": "https://basecamp.com/999999999/api/v1/projects/605816632-bcx/todos/1046098401-think-of-it.json",
+        "assignee": {},
+        "position": 3,
+        "completer": {
+          "id": 149087659,
+          "name": "Jason Fried"
+        }
+      }
+    ]
+  },
+  "comments": [
+    {
+      "id": 1028592764,
+      "content": "+1",
+      "created_at": "2012-03-24T09:53:34-05:00",
+      "updated_at": "2012-03-24T09:53:34-05:00",
+      "creator": {
+        "id": 127326141,
+        "name": "David Heinemeier Hansson",
+        "avatar_url": "https://asset0.37img.com/global/9d2148cb8ed8e2e8ecbc625dd1cbe7691896c7d9/avatar.96.gif?r=3"
+      }
+    }
+  ],
+  "subscribers": [
+    {
+      "id": 149087659,
+      "name": "Jason Fried"
+    },
+    {
+      "id": 1071630348,
+      "name": "Jeremy Kemper"
+    }
+  ]
+}
