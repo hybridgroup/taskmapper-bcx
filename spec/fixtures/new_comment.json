@@ -1,0 +1,12 @@
+{
+  "id": 1028592764,
+  "content": "New Comment!",
+  "created_at": "2012-03-22T16:56:48-05:00",
+  "updated_at": "2012-03-22T16:56:48-05:00",
+  "creator": {
+    "id": 149087659,
+    "name": "Jason Fried",
+    "avatar_url": "https://asset0.37img.com/global/4113d0a133a32931be8934e70b2ea21efeff72c1/avatar.96.gif?r=3"
+  },
+  "topic_url": "https://basecamp.com/9999999/api/v1/messages/888888.json"
+}
