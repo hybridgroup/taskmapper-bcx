@@ -33,9 +33,9 @@ module TaskMapper::Provider
 
       def update_todo(todo)
         body = {
-          content: todo['content'],
-          due_at: todo['due_at'],
-          completed: todo['completed']
+           :content => todo['content'],
+           :due_at => todo['due_at'],
+           :completed => todo['completed']
         }
 
         url = "/projects/#{todo['project_id']}/todos/#{todo['id']}.json"

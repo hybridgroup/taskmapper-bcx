@@ -50,9 +50,7 @@ describe TaskMapper::Provider::Bcx::Project do
       let(:ticket) { project.tickets.first }
 
       before do
-        expect(TaskMapper::Provider::Bcx::API)
-          .to receive(:put)
-          .with(
+        expect(TaskMapper::Provider::Bcx::API).to receive(:put).with(
             "/projects/605816632/todos/1.json",
             hash_including(:body)
           )
@@ -69,9 +67,7 @@ describe TaskMapper::Provider::Bcx::Project do
       let(:ticket) { project.tickets.last }
 
       before do
-        expect(TaskMapper::Provider::Bcx::API)
-          .to receive(:put)
-          .with(
+        expect(TaskMapper::Provider::Bcx::API).to receive(:put).with(
             "/projects/605816632/todos/3.json",
             hash_including(:body)
           )
