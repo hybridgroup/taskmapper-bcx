@@ -12,8 +12,12 @@ def password
   "password"
 end
 
-def create_instance(u = username, p = password)
-  TaskMapper.new(:bcx, :username => u, :password => p)
+def account_id
+  "999999999"
+end
+
+def create_instance(u = username, p = password, id = account_id)
+  TaskMapper.new(:bcx, :username => u, :password => p, :account_id => id)
 end
 
 def fixture_file(filename)

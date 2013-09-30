@@ -10,6 +10,7 @@ describe TaskMapper::Provider::Bcx do
 
     it "can be explicitly called as a provider" do
       tm = TaskMapper::Provider::Bcx.new(
+        :account_id => account_id,
         :username => username,
         :password => password
       )

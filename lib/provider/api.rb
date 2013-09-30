@@ -5,14 +5,15 @@ module TaskMapper::Provider
     class API
       include HTTParty
 
-      attr_reader :username, :password
+      attr_reader :account_id, :username, :password
 
-      base_uri "https://basecamp.com/999999999/api/v1"
       headers "Content-Type" => "Content-Type: application/json; charset=utf-8"
 
-      def initialize(username, password)
+      def initialize(account_id, username, password)
         @username = username
         @password = password
+        @account_id = account_id
+        self.class.base_uri "https://basecamp.com/#{account_id}/api/v1"
         self.class.basic_auth username, password
       end
     end
