@@ -31,6 +31,17 @@ module TaskMapper::Provider
         self.class.post url, :body => body.to_json
       end
 
+      def update_todo(todo)
+        body = {
+          content: todo['content'],
+          due_at: todo['due_at'],
+          completed: todo['completed']
+        }
+
+        url = "/projects/#{todo['project_id']}/todos/#{todo['id']}.json"
+        self.class.put url, :body => body.to_json
+      end
+
       private
       def get_todolist_ids(project_id)
         lists = self.class.get "/projects/#{project_id}/todolists.json"

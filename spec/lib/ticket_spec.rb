@@ -45,6 +45,44 @@ describe TaskMapper::Provider::Bcx::Project do
         expect(ticket.id).to eq 1
       end
     end
+
+    describe "#close" do
+      let(:ticket) { project.tickets.first }
+
+      before do
+        expect(TaskMapper::Provider::Bcx::API)
+          .to receive(:put)
+          .with(
+            "/projects/605816632/todos/1.json",
+            hash_including(:body)
+          )
+      end
+
+      it "updates the status and saves the ticket" do
+        expect(ticket.status).to eq "open"
+        ticket.close
+        expect(ticket.status).to eq 'closed'
+      end
+    end
+
+    describe "#reopen" do
+      let(:ticket) { project.tickets.last }
+
+      before do
+        expect(TaskMapper::Provider::Bcx::API)
+          .to receive(:put)
+          .with(
+            "/projects/605816632/todos/3.json",
+            hash_including(:body)
+          )
+      end
+
+      it "updates the status and saves the ticket" do
+        expect(ticket.status).to eq "closed"
+        ticket.reopen
+        expect(ticket.status).to eq 'open'
+      end
+    end
   end
 
   describe "#ticket!" do

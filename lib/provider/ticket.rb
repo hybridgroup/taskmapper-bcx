@@ -14,12 +14,30 @@ module TaskMapper::Provider
         self[:content] = string
       end
 
+      def status
+        self[:completed] ? 'closed' : 'open'
+      end
+
       def updated_at
         begin
           Time.parse(self[:updated_at])
         rescue
           self[:updated_at]
         end
+      end
+
+      def save
+        api.update_todo self
+      end
+
+      def close
+        self[:completed] = true
+        save
+      end
+
+      def reopen
+        self[:completed] = false
+        save
       end
 
       def created_at
@@ -58,6 +76,11 @@ module TaskMapper::Provider
         def api
           TaskMapper::Provider::Bcx.api
         end
+      end
+
+      private
+      def api
+        TaskMapper::Provider::Bcx.api
       end
     end
   end
