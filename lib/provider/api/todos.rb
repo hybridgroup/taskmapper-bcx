@@ -2,13 +2,15 @@ module TaskMapper::Provider
   module Bcx
     class API
       def todos(project_id)
-        todolists = self.class.get "/projects/#{project_id}/todolists.json"
-        ids = todolists.collect { |t| t['id'] }
+        ids = get_todolist_ids project_id
+        todo_ids = ids.collect do |id|
+          get_todo_ids_from_list project_id, id 
+        end.flatten
+
         todos = []
-        ids.each do |id|
-          list = self.class.get("/projects/#{project_id}/todolists/#{id}.json")
-          next if !list.is_a?(Hash) || list["todos"].nil?
-          todos << list["todos"]["remaining"]
+        todo_ids.each do |id|
+          todo = self.class.get "/projects/#{project_id}/todos/#{id}.json"
+          todos << Hash[todo]
         end
         todos.flatten
       end
@@ -27,6 +29,21 @@ module TaskMapper::Provider
 
         url = "/projects/#{project}/todolists/#{todolist}/todos.json"
         self.class.post url, :body => body.to_json
+      end
+
+      private
+      def get_todolist_ids(project_id)
+        lists = self.class.get "/projects/#{project_id}/todolists.json"
+        lists.collect { |t| t['id'] }
+      end
+
+      def get_todo_ids_from_list(project_id, list)
+        list = self.class.get "/projects/#{project_id}/todolists/#{list}.json"
+        return [] if !list.is_a?(Hash) || list["todos"].nil?
+        ids = []
+        ids << list["todos"]["remaining"].map { |t| t['id'] }
+        ids << list["todos"]["completed"].map { |t| t['id'] }
+        ids.flatten
       end
     end
   end
