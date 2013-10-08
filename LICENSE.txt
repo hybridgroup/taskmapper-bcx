@@ -1,4 +1,4 @@
-Copyright (c) 2013 Andrew Stewart
+Copyright (c) 2013 Hybrid Group
 
 MIT License
 
